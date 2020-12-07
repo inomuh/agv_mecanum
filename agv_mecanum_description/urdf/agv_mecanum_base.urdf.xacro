@@ -1,0 +1,254 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">  
+  	<xacro:macro name="agv_mecanum_base">
+		<link name="base_link">	
+		<origin xyz="0 0 0.0" rpy="0 0 0"/>
+			<inertial>
+				<mass value="5.1020"/>
+				<inertia ixx="0.138180" ixy="0" ixz="0" iyy="0.512329" iyz="0" izz="0.3932823"/>
+			</inertial>
+			
+			<visual>
+				<origin xyz="0 0 -0.08" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://agv_mecanum_description/meshes/MOTA-v0.3.stl" scale="0.00101 0.00095 0.00101"/>
+				</geometry>
+			</visual>
+			
+			<collision>
+				<origin xyz="0 0 0.0" rpy="0 0 0"/>
+				<geometry>
+					<box size="0.95 0.55 0.16"/>
+				</geometry>
+			</collision>
+		</link>
+
+		<gazebo reference="base_link">
+			<material>Gazebo/Orange</material>		
+		</gazebo>
+		
+		<link name="platform_link">
+			<origin xyz="0 0 0.0" rpy="0 0 0"/>
+			<inertial>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<mass value="0.100"/>
+				<inertia ixx="0.001666" ixy="0" ixz="0" iyy="0.001666" iyz="0" izz="0.001666"/>
+			</inertial>
+
+			<visual>
+				<origin xyz="0 0 0.0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://agv_mecanum_description/meshes/Tavan_Saci.stl" scale="0.001 0.0009 0.001"/>
+				</geometry>
+			</visual>
+
+			<collision>
+				<origin xyz="0 0 0.0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://agv_mecanum_description/meshes/Tavan_Saci.stl" scale="0.001 0.0009 0.001"/>
+				</geometry>
+			</collision>
+			
+			<surface>
+				<contact>
+					<ode>
+						<max_vel>0.0</max_vel>
+						<min_depth>0.001</min_depth>
+					</ode>
+				</contact>
+			</surface>
+		</link>
+
+		<gazebo reference="platform_link">
+			<material>Gazebo/Black</material>		
+		</gazebo>
+
+		<joint name="platform_joint" type="fixed">
+			<origin xyz="0.0 0.0 0.08" rpy="0 0 0"/>
+			<parent link="base_link"/>
+			<child link="platform_link"/>
+		</joint>
+
+		<link name="led_link">
+			<origin xyz="0 0 0.0" rpy="0 0 0"/>
+			<visual>
+				<origin xyz="0.45 0 0.068" rpy="0 0 1.570796" />  
+				<geometry>
+					<mesh filename="package://agv_mecanum_description/meshes/RGB_Flex_Led.stl" scale="0.00095 0.0009 0.001"/>
+					<material name="Gazebo/Black" />
+				</geometry>
+			</visual>
+
+			<visual>
+				<origin xyz="0 0.28 0.068" rpy="0 0 3.14159" />  
+				<geometry>
+					<mesh filename="package://agv_mecanum_description/meshes/RGB_Flex_Led.stl" scale="0.00101 0.0009 0.001"/>
+					<material name="Gazebo/Black" />
+				</geometry>
+			</visual>
+
+			<visual>
+				<origin xyz="-0.48 0 0.068" rpy="0 0 -1.570796" />  
+				<geometry>
+					<mesh filename="package://agv_mecanum_description/meshes/RGB_Flex_Led.stl" scale="0.00095 0.0009 0.001"/>
+					<material name="Gazebo/Black" />
+				</geometry>
+			</visual>
+
+			<visual>
+				<origin xyz="0 -0.28 0.068" rpy="0 0 0" />  
+				<geometry>
+					<mesh filename="package://agv_mecanum_description/meshes/RGB_Flex_Led.stl" scale="0.00101 0.0009 0.001"/>
+					<color name="Black" />
+				</geometry>
+			</visual>
+
+			<visual>
+				<origin xyz="0.48 0 0.07" rpy="0 0 1.570796" />  
+				<geometry>
+					<mesh filename="package://agv_mecanum_description/meshes/RGB_Flex_Led.stl" scale="0.00095 0.0009 0.001"/>
+					<material name="Gazebo/Black" />
+				</geometry>
+			</visual>
+		</link>
+
+		<gazebo reference="led_link">
+			<material>Gazebo/Black</material>		
+		</gazebo>
+		
+		<joint name="led_joint" type="fixed">
+			<origin xyz="0.0 0.0 -0.08" rpy="0 0 0"/>
+			<parent link="base_link"/>
+			<child link="led_link"/>
+		</joint>
+
+		<link name="camera_link"> 
+			<inertial>
+				<mass value="0.159" />
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<inertia ixx="10" ixy="0" ixz="0" iyy="10" iyz="0" izz="10" />
+			</inertial>
+
+			<visual>
+				<origin xyz="0 0 0" rpy="1.57 0 1.57"/>
+				<geometry>
+					<mesh filename="package://agv_mecanum_description/meshes/ZED-camera.stl" scale="0.001 0.001 0.001"/>
+				</geometry>			
+			</visual>
+
+			<collision>
+				<origin xyz="0 0 0" rpy="1.57 0 1.57"/>
+				<geometry>
+					<mesh filename="package://agv_mecanum_description/meshes/ZED-camera.stl" scale="0.001 0.001 0.001"/>
+				</geometry>	
+			</collision>
+		</link>
+
+		<joint name="camera_joint" type="fixed">
+			<origin xyz="0.445 0 0.05" rpy="0 0 0"/>
+			<parent link="base_link"/>
+			<child link="camera_link"/>
+		</joint>
+	
+		<gazebo reference="camera_link">
+			<material>Gazebo/DarkGrey</material>
+			<sensor type="multicamera" name="camera">
+				<update_rate>60.0</update_rate>
+				<camera name="left">
+					<pose>0.03 0.06 0 0 0 0</pose>
+					<horizontal_fov>1.91986</horizontal_fov>
+					<image>
+						<width>2560</width>
+						<height>720</height>
+						<format>R8G8B8</format>
+					</image>
+					<clip>
+						<near>0.5</near>
+						<far>20</far>
+					</clip>
+					<noise>
+						<type>gaussian</type>
+						<mean>0.0</mean>
+						<stddev>0.007</stddev>
+					</noise>
+				</camera>
+
+				<camera name="right">
+					<pose>0.03 -0.06 0 0 0 0</pose>
+					<horizontal_fov>1.91986</horizontal_fov>
+					<image>
+						<width>2560</width>
+						<height>720</height>
+						<format>R8G8B8</format>
+					</image>
+					<clip>
+						<near>0.5</near>
+						<far>20</far>
+					</clip>
+					<noise>
+						<type>gaussian</type>
+						<mean>0.0</mean>
+						<stddev>0.007</stddev>
+					</noise>
+				</camera>
+
+				<plugin name="stereo_camera_controller" filename="libgazebo_ros_multicamera.so">
+					<alwaysOn>true</alwaysOn>
+					<updateRate>0.0</updateRate>
+					<cameraName>camera</cameraName>
+					<imageTopicName>image_raw</imageTopicName>
+					<cameraInfoTopicName>camera_info</cameraInfoTopicName>
+					<frameName>left_camera_optical_frame</frameName>
+					<hackBaseline>0.07</hackBaseline>
+					<distortionK1>0.0</distortionK1>
+					<distortionK2>0.0</distortionK2>
+					<distortionK3>0.0</distortionK3>
+					<distortionT1>0.0</distortionT1>
+					<distortionT2>0.0</distortionT2>
+				</plugin>
+			</sensor>
+		</gazebo>
+
+		<link name="left_camera_optical_frame">
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />  
+				<geometry>
+					<cylinder length="0.005" radius="0.005"/>
+					<material name="Gazebo/Blue" />
+				</geometry>			
+			</visual>
+		</link>
+
+		<joint name="left_camera_optical_joint" type="fixed">
+			<origin xyz="0.0 0.06 0" rpy="0 0 0" />
+			<parent link="camera_link" />
+			<child link="left_camera_optical_frame" />
+		</joint>
+
+		<link name="right_camera_optical_frame">
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />  
+				<geometry>
+					<cylinder length="0.005" radius="0.005"/>
+					<material name="Gazebo/Grey" />
+				</geometry>
+			</visual>
+		</link>
+
+		<joint name="right_camera_optical_joint" type="fixed">
+			<origin xyz="0.0 -0.06 0" rpy="0 0 0" />
+			<parent link="camera_link" />
+			<child link="right_camera_optical_frame" />
+		</joint>
+
+		<gazebo>
+			<plugin name="move_controller" filename="libgazebo_ros_planar_move.so">
+				<commandTopic>cmd_vel</commandTopic>
+				<odometryTopic>odom</odometryTopic>
+				<odometryFrame>odom</odometryFrame>
+				<odometryRate>10.0</odometryRate>
+				<robotBaseFrame>base_link</robotBaseFrame>
+			</plugin>
+		</gazebo>
+	</xacro:macro>	  
+</robot>

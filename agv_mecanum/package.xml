@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <name>agv_mecanum</name>
+  <version>1.0.0</version>
+  <description>The agv_mecanum meta package</description>
+
+  <maintainer email="bilgi@inovasyonmuhendislik.com">İnovasyon Muhendislik</maintainer>
+
+  <license>Apache 2.0</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>agv_mecanum_description</run_depend>
+  <run_depend>agv_mecanum_simulation</run_depend>
+  <run_depend>agv_mecanum_teleop</run_depend>
+  
+  <export>
+    <metapackage/>
+  </export>
+</package>

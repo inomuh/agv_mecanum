@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot name="agv_mecanum" xmlns:xacro="http://ros.org/wiki/xacro">
+
+ <xacro:include filename="$(find agv_mecanum_description)/urdf/agv_mecanum_base.urdf.xacro"/>
+ <xacro:include filename="$(find agv_mecanum_description)/urdf/agv_mecanum_ir.urdf.xacro"/>
+ <xacro:include filename="$(find agv_mecanum_description)/urdf/agv_mecanum_camera.urdf.xacro"/>
+ 
+  <xacro:agv_mecanum_base />
+  <xacro:agv_mecanum_ir base_link="base_link" link_name="ir1" xyz_ir="0.476 0.128 0.05" rpy_ir="0 0 0"/>
+  <xacro:agv_mecanum_ir base_link="base_link" link_name="ir2" xyz_ir="0.201 0.279 0.05" rpy_ir="0 0 1.570796"/>
+  <xacro:agv_mecanum_ir base_link="base_link" link_name="ir3" xyz_ir="-0.201 0.279 0.05" rpy_ir="0 0 1.570796"/>
+  <xacro:agv_mecanum_ir base_link="base_link" link_name="ir4" xyz_ir="-0.476 0.128 0.05" rpy_ir="0 0 3.14159"/>
+  <xacro:agv_mecanum_ir base_link="base_link" link_name="ir5" xyz_ir="-0.476 -0.128 0.05"  rpy_ir="0 0 3.14159"/>
+  <xacro:agv_mecanum_ir base_link="base_link" link_name="ir6" xyz_ir="-0.201 -0.279 0.05" rpy_ir="0 0 -1.570796"/>
+  <xacro:agv_mecanum_ir base_link="base_link" link_name="ir7" xyz_ir="0.201 -0.279 0.05" rpy_ir="0 0 -1.570796"/>
+  <xacro:agv_mecanum_ir base_link="base_link" link_name="ir8" xyz_ir="0.476 -0.128 0.05" rpy_ir="0 0 0"/>
+
+  <xacro:agv_mecanum_camera base_link="base_link" link_name="camera1" xyz_cam="0.0 0.275 0.05" rpy_cam="0 0 1.57096"/>
+  <xacro:agv_mecanum_camera base_link="base_link" link_name="camera2" xyz_cam="-0.475 0.0 0.05" rpy_cam="0 0 3.14159"/>
+  <xacro:agv_mecanum_camera base_link="base_link" link_name="camera3" xyz_cam="0.0 -0.275 0.05" rpy_cam="0 0 -1.57096"/>
+
+
+</robot>

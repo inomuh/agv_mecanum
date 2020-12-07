@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>	
+	<arg name="world_path" default="worlds/empty.world"/>
+ <include file="$(find agv_mecanum_simulation)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world_path)"/>  <!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable -->
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+
+</launch>

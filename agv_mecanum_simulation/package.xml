@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+  <name>agv_mecanum_simulation</name>
+  <version>1.0.0</version>
+  <description>agv_mecanum_simulation</description>
+
+  <author>İnovasyon Mühendislik</author>
+  <maintainer email="bilgi@inovasyonmuhendislik.com">İnovasyon Mühendislik</maintainer>
+  <license>Apache 2.0</license>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>gazebo</build_depend>
+  <build_depend>gazebo_msgs</build_depend>
+  <run_depend>gazebo</run_depend>
+  <run_depend>gazebo_msgs</run_depend>
+  <run_depend>gazebo_ros</run_depend>
+</package>
