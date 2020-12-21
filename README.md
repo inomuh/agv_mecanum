@@ -1,4 +1,4 @@
-# AGV Mecanum (ROS Noetic)
+# AGV Mecanum (AGV-MOTA) (ROS Noetic)
 This repository includes the AGV Mecanum ROS Noetic packages.
 
 ![Image of AGV Mecanum](https://github.com/inomuh/agv_mecanum/blob/main/images/agv_mecanum_gazebo.png)
